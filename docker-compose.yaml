@@ -1,0 +1,24 @@
+version: '3'
+services:
+  backend:
+    image: mr-backend:latest
+    ports:
+      - 5000:5000
+    container_name: backend
+    build:
+      context: meme-reviewer-backend/
+  frontend:
+    image: mr-frontend:latest
+    ports:
+      - 3000:3000
+    container_name: frontend
+    build:
+      context: meme-reviewer-frontend/
+
+# check if you have the images mr-backend & mr-frontend -> docker image ls
+
+# if not build the images as said in the Dockerfiles in folders meme-reviewer-backend & meme-reviewerfrontend
+
+# check if you are in the root folder, to go a folder back you can do -> cd ..
+
+# run all the containers in one command -> docker compose up -d
