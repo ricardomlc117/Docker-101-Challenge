@@ -1,0 +1,32 @@
+version: '3'
+services:
+  backend:
+    image: <container_registry_name>/mr-backend:latest
+    ports:
+      - 5000:5000
+    container_name: backend
+    build:
+      context: meme-reviewer-backend/
+  frontend:
+    image: <container_registry_name>.azurecr.io/mr-frontend:latest
+    ports:
+      - 3000:3000
+    container_name: frontend
+    build:
+      context: meme-reviewer-frontend/
+
+# install Azure CLI here
+# https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
+
+# if you have not done it, create your azure container registry in azure
+# follow this tutorial if you dont know how 
+# https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli
+
+# first login to azure -> az login (it will redirect you to your browser)
+# then login to your registry -> az acr login -n <container_registry_name>
+
+# tag your images with the name of the container registry -> docker tag mr-frontend:latest <container_registry_name>.azurecr.io/mr-frontend:latest
+
+# push images to your container registry -> docker push <container_registry_name>.azurecr.io/mr-frontend:latest
+
+# once you've done it you can use this compose file -> docker compose up -d
